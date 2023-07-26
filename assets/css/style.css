@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,700&display=swap');
+
+:root {
+    --primary-color: rgb(13, 106, 134);
+    --primary-color-darker: rgb(9, 48, 56);
+    --button-green: rgb(20, 170, 37);
+    --button-yellow: rgb(213, 188, 19);
+    --button-red: rgb(213, 18, 18);
+    --button-dark-green: rgb(13, 100, 26);
+    --button-dark-yellow: rgb(127, 112, 10);
+    --button-dark-red: rgb(147, 14, 14);
+}
+
+* {
+    box-sizing: border-box;
+    outline: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: var(--primary-color);
+    font-family: 'Open sans', sans-serif;
+    font-size: 1.3em;
+    line-height: 1.5em;
+    text-align: center;
+}
+
+.container {
+    max-width: 640px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+button {
+    width: 20%;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: none;
+    background: var(--primary-color);
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+    height: 50px;
+    cursor: pointer;
+    margin-top: 30px;
+}
+
+button.iniciar {
+    background: var(--button-green);
+}
+button.pausar {
+    background: var(--button-yellow);
+}
+button.zerar {
+    background: var(--button-red);
+}
+
+button.iniciar:hover {
+    background: var(--button-dark-green);
+}
+button.pausar:hover {
+    background: var(--button-dark-yellow);
+}
+button.zerar:hover {
+    background: var(--button-dark-red);
+}
+
+button:active {
+    background: var(--primary-color);
+}
+
+.relogio {
+    font-size: 3em;
+}
+
+h1 {
+    font-size: 4em;
+    text-transform: uppercase;
+}
+
+.paused {
+    color:rgb(190, 9, 0);
+}
