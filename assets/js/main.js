@@ -3,19 +3,13 @@ const iniciar = document.querySelector('.iniciar');
 const pausar = document.querySelector('.pausar');
 const zerar = document.querySelector('.zerar');
 
-const tresHoras = 60 * 60 * 3 * 1000;
-const horaZerada = new Date(tresHoras);
 let contador = 0;
-let tempoAtual;
 let timer;
 
 iniciar.addEventListener('click', (e) => {
     removeVermelho();
-    timer = setInterval(function () {
-        contador += 1000;
-        tempoAtual = new Date(tresHoras + contador);
-        relogio.innerHTML = formataHoraString(tempoAtual);
-    }, 1000);
+    paraRelogio();          // ---> Utilizado para evitar que, ao clicar em 'iniciar' a 2ªvez, haja "dois timers concomitantes" operando.
+    iniciaRelogio();
 })
 
 pausar.addEventListener('click', (e) => {
@@ -24,10 +18,10 @@ pausar.addEventListener('click', (e) => {
 })
 
 zerar.addEventListener('click', (e) => {
-    contador = 0;
-    tempoAtual = 0;
     removeVermelho();
     paraRelogio();
+    contador = 0;
+    const horaZerada = new Date(0);
     relogio.innerHTML = formataHoraString(horaZerada);
 })
 
@@ -36,14 +30,21 @@ function formataHoraString(hora) {
         hour: '2-digit',
         minute: '2-digit',
         second: '2-digit',
-        hour12: false
+        hour12: false,
+        timeZone: 'GMT'
     })
 }
 
+function iniciaRelogio() {
+    timer = setInterval(function () {
+        contador += 1000;
+        let tempoAtual = new Date(contador);
+        relogio.innerHTML = formataHoraString(tempoAtual);
+    }, 1000);
+}
+
 function paraRelogio() {
-    setTimeout(() => {
-        clearInterval(timer);
-    }, 1);
+    clearInterval(timer);
 }
 
 const removeVermelho = () => relogio.classList.contains('paused') ? relogio.classList.remove('paused') : null;
