@@ -1,28 +1,27 @@
 const relogio = document.querySelector('.relogio');
-const iniciar = document.querySelector('.iniciar');
-const pausar = document.querySelector('.pausar');
-const zerar = document.querySelector('.zerar');
 
 let contador = 0;
 let timer;
 
-iniciar.addEventListener('click', (e) => {
-    removeVermelho();
-    paraRelogio();          // ---> Utilizado para evitar que, ao clicar em 'iniciar' a 2ªvez, haja "dois timers concomitantes" operando.
-    iniciaRelogio();
-})
+document.addEventListener('click', (e) => {
+    const el = e.target;                       
 
-pausar.addEventListener('click', (e) => {
-    relogio.classList.add('paused');
-    paraRelogio();
-})
-
-zerar.addEventListener('click', (e) => {
-    removeVermelho();
-    paraRelogio();
-    contador = 0;
-    const horaZerada = new Date(0);
-    relogio.innerHTML = formataHoraString(horaZerada);
+    if (el.classList.contains('iniciar')) {
+        removeVermelho();
+        paraRelogio();          // ---> Utilizado para evitar que, ao clicar em 'iniciar' a 2ªvez, haja "dois timers concomitantes" operando.
+        iniciaRelogio();
+    }
+    if (el.classList.contains('pausar')) {
+        relogio.classList.add('paused');
+        paraRelogio();
+    }
+    if (el.classList.contains('zerar')) {
+        removeVermelho();
+        paraRelogio();
+        contador = 0;
+        const horaZerada = new Date(0);
+        relogio.innerHTML = formataHoraString(horaZerada);
+    }
 })
 
 function formataHoraString(hora) {
